@@ -2,7 +2,7 @@ import React from "react";
 //import { PropTypes } from "react";
 export default function navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
@@ -38,7 +38,7 @@ export default function navbar(props) {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-primary" type="submit">
               Search
             </button>
           </form>
