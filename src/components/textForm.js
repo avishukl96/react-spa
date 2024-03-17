@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 export default function TextForm(props) {
   const [text, setText] = useState("Enter Test here");
+  const wordCount = text.split(/\s+/).filter((word) => word !== "").length;
+  const textCount = text.trim().length;
   //setText("avanish");
   const handleUpClick = () => {
     console.log("Uppercase Clicked");
@@ -95,12 +97,12 @@ export default function TextForm(props) {
       >
         <h2>Your Text Summary</h2>
         <p>
-          {text.split(" ").length} words and {text.length} charecters
+          {wordCount} words and {textCount} charecters
         </p>
-        <p>{0.2 * text.split(" ").length} second to read</p>
+        <p>{0.2 * wordCount} second to read</p>
         <h2>Preview</h2>
         <p>
-          {text.length > 0
+          {textCount > 0
             ? text
             : "Enter something in above textbox to preview here"}
         </p>
