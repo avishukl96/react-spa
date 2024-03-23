@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter Test here");
+  const [text, setText] = useState("");
   const wordCount = text.split(/\s+/).filter((word) => word !== "").length;
   const textCount = text.trim().length;
   //setText("avanish");
@@ -37,6 +37,8 @@ export default function TextForm(props) {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
+    props.showAlert("Texts has been copied", "success");
   };
 
   const handleRemoveExtraSpaces = () => {
@@ -54,40 +56,59 @@ export default function TextForm(props) {
         className="mb-3 my-10 container"
         style={{ color: props.mode === "dark" ? "white" : "#042743" }}
       >
-        <h1>{props.heading}</h1>
+        <h2 className="my-4">{props.heading}</h2>
         <textarea
           className="form-control"
           id="myBox"
           rows={6}
           value={text}
           onChange={handleOnChange}
+          placeholder="Enter Your Text"
           style={{
-            backgroundColor: props.mode === "dark" ? "grey" : "white",
+            backgroundColor: props.mode === "dark" ? "#13466e" : "white",
             color: props.mode === "dark" ? "white" : "#042743",
           }}
         />
-        <button className="btn btn-primary my-3" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary my-3"
+          onClick={handleUpClick}
+        >
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary my-3 mx-1" onClick={handleDownClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary my-3 mx-1"
+          onClick={handleDownClick}
+        >
           Convert to LowerCase
         </button>
         <button
+          disabled={text.length === 0}
           className="btn btn-primary my-3 mx-1"
           onClick={handleCamelClick}
         >
           Convert to CamelCase
         </button>
-        <button className="btn btn-primary my-3 mx-1" onClick={handleCopy}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary my-3 mx-1"
+          onClick={handleCopy}
+        >
           Copy Text
         </button>
         <button
+          disabled={text.length === 0}
           className="btn btn-primary my-3 mx-1"
           onClick={handleRemoveExtraSpaces}
         >
           Remove Extra Spaces
         </button>
-        <button className="btn btn-primary my-3" onClick={handleClearClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary my-3"
+          onClick={handleClearClick}
+        >
           Clear Text
         </button>
       </div>
@@ -99,13 +120,10 @@ export default function TextForm(props) {
         <p>
           {wordCount} words and {textCount} charecters
         </p>
-        <p>{0.2 * wordCount} second to read</p>
+        <p>{0.08 * wordCount} second to read</p>
+
         <h2>Preview</h2>
-        <p>
-          {textCount > 0
-            ? text
-            : "Enter something in above textbox to preview here"}
-        </p>
+        <p>{textCount > 0 ? text : "Nothing to preview!"}</p>
       </div>
     </>
   );

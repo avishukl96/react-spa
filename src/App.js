@@ -24,12 +24,12 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
       showAlert("Dark mode has been Enabled", "success");
-      document.title = "Text Util - Dark Mode";
+      //document.title = "Text Util - Dark Mode";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been Enabled", "success");
-      document.title = "Text Util - Dark Mode";
+      //document.title = "Text Util - Dark Mode";
     }
   };
 
@@ -37,7 +37,7 @@ function App() {
     <>
       <Router>
         <Navbar
-          title="My React SPA"
+          title="Text Utils"
           aboutus="About Us"
           mode={mode}
           toggleMode={toggleMode}
@@ -46,13 +46,13 @@ function App() {
 
         <div className="container my-3">
           <Routes>
-            <Route exact path="/about" element={<About />} />
+            <Route exact path="/about" element={<About mode={mode} />} />
             <Route
               path="/"
               exact
               element={
                 <TextForm
-                  heading="Enter your text to analyse"
+                  heading="Try  Text Utils - Word Counter, Charector Counter, Remove Extra Spaces"
                   mode={mode}
                   showAlert={showAlert}
                 />
