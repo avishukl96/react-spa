@@ -34,10 +34,12 @@ export default function TextForm(props) {
   };
 
   const handleCopy = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+    // var text = document.getElementById("myBox");
+    // text.select();
+    //navigator.clipboard.writeText(text.value);
+    // document.getSelection().removeAllRanges();
+
+    navigator.clipboard.writeText(text);
     props.showAlert("Texts has been copied", "success");
   };
 
